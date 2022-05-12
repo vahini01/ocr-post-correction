@@ -38,8 +38,8 @@ mkdir $expt_folder/vocab
 
 # Denoise outputs for pretraining
 python utils/denoise_outputs.py \
---train_src1 $train_src \
---train_tgt $train_tgt \
+--train_src1 $denoise_src \
+--train_tgt $denoise_tgt \
 --input $pretrain_src \
 --output $pretrain_src'.denoised'
 
