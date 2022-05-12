@@ -3,6 +3,9 @@
 # Set pretraining, training and development set files
 pretrain_src="sample_dataset/postcorrection/pretraining/pretrain_src1.txt"
 
+denoise_src="sample_dataset/postcorrection/training/denoise_src1.txt"
+denoise_tgt=""sample_dataset/postcorrection/training/denoise_tgt.txt"
+
 train_src="sample_dataset/postcorrection/training/train_src1.txt"
 train_tgt="sample_dataset/postcorrection/training/train_tgt.txt"
 
