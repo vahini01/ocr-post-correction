@@ -80,6 +80,7 @@ if __name__ == "__main__":
             val_src1=config.args.dev_src1,
             val_src2=config.args.dev_src2,
             val_tgt=config.args.dev_tgt,
+            epochs=5,
         )
 
     elif config.args.testing:
