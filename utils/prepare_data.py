@@ -141,21 +141,44 @@ def prepare_training_data(src1, src2, tgt, output_folder, training_frac):
 
     all_files = list(zip(src1_paths, src2_paths, tgt_paths))
     random.shuffle(all_files)
+    
+    #    Shuffle into 10 buckets
+    files = []
+    for i in range(10):
+        files.append([])
+    
+    for f, i in enumerate(all_files)):
+        files[i%10].append(f)
+   
+    for i in range(10):
+#         for j in range(i):
+#             id  = i*10 + j
+            id = i
+            dev_idx = (i+1)%10
+            test_idx = i
+            train_files = list(set(all_files)-set(files[dev_idx]+files[test_idx]))
+            write_training_data(train_files, "{}/train{}_".format(output_folder, id), check)
+            write_training_data(
+                files[dev_idx], "{}/dev{}_".format(output_folder, id), check
+            )
+            write_training_data(files[test_idx], "{}/test{}_".format(output_folder, id), check)
+            
+#     train_idx = round(training_frac * len(all_files))
+#     dev_idx = train_idx + round((1.0 - training_frac) * len(all_files) / 2)
 
-    train_idx = round(training_frac * len(all_files))
-    dev_idx = train_idx + round((1.0 - training_frac) * len(all_files) / 2)
+#     if dev_idx <= train_idx or dev_idx == len(all_files):
+#         logging.error(
+#             "ERROR: Fractions for data split are not usable with the dataset size. Adjust the parameter and try again. "
+#         )
+#         return
 
-    if dev_idx <= train_idx or dev_idx == len(all_files):
-        logging.error(
-            "ERROR: Fractions for data split are not usable with the dataset size. Adjust the parameter and try again. "
-        )
-        return
+#     write_training_data(all_files[:train_idx], "{}/train{}_".format(output_folder, id), check)
+#     write_training_data(
+#         all_files[train_idx:dev_idx], "{}/dev{}_".format(output_folder, id), check
+#     )
+#     write_training_data(all_files[dev_idx:], "{}/test{}_".format(output_folder, id), check)
 
-    write_training_data(all_files[:train_idx], "{}/train_".format(output_folder), check)
-    write_training_data(
-        all_files[train_idx:dev_idx], "{}/dev_".format(output_folder), check
-    )
-    write_training_data(all_files[dev_idx:], "{}/test_".format(output_folder), check)
+
 
 
 if __name__ == "__main__":
