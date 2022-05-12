@@ -138,6 +138,9 @@ def prepare_training_data(src1, src2, tgt, output_folder, training_frac):
     all_files = list(zip(src1_paths, src2_paths, tgt_paths))
     random.shuffle(all_files)
     
+    write_training_data(all_files[:3], "{}/denoise{}_".format(output_folder), check)
+    all_files = all_files[3:]
+    
     #    Shuffle into 10 buckets
     files = []
     for i in range(10):
