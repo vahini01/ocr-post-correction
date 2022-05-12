@@ -1,14 +1,10 @@
 """Script to prepare the pretraining and training datasets for training an OCR post-correction model.
-
 For pretraining data, the script combines all uncorrected files into a single text file.
-
 For training data, the script splits the manually corrected files into training, development, and testing sets.
 The fraction of training data is controlled with the --training_frac option.
 The remaining data is equally split between development and testing sets.
-
 Copyright (c) 2021, Shruti Rijhwani
 All rights reserved.
-
 This source code is licensed under the BSD-style license found in the
 LICENSE file in the root directory of this source tree. 
 """
@@ -147,7 +143,7 @@ def prepare_training_data(src1, src2, tgt, output_folder, training_frac):
     for i in range(10):
         files.append([])
     
-    for f, i in enumerate(all_files)):
+    for i, f in enumerate(all_files):
         files[i%10].append(f)
    
     for i in range(10):
