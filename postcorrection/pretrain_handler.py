@@ -78,7 +78,8 @@ class PretrainHandler:
 
         if pretrain_model:
             logging.info("Pretraining seq2seq model")
-            self.pretrain_model(pretrain_src1, pretrain_src2, pretrain_tgt, epochs)
+#             Hardcoding epochs to 5 - to satisfy paper hyperparameters.
+            self.pretrain_model(pretrain_src1, pretrain_src2, pretrain_tgt, 5)
 
         self.model.save()
 

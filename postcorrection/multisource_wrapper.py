@@ -44,6 +44,8 @@ if __name__ == "__main__":
     tgt_vocab = CharVocab(
         filepaths=None, lookup_json="{}/tgt.json".format(config.args.vocab_folder)
     )
+    
+    print(config.args)
 
     model = TwoSourceModel(
         src1_vocab=src1_vocab,
@@ -80,7 +82,7 @@ if __name__ == "__main__":
             val_src1=config.args.dev_src1,
             val_src2=config.args.dev_src2,
             val_tgt=config.args.dev_tgt,
-            epochs=5,
+#             epochs=5,
         )
 
     elif config.args.testing:
