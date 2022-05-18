@@ -178,7 +178,9 @@ class SetConfig:
             self.model_name = None
         else:
             filename = args.model_name
-            log_filename = output_folder + "train_logs/" + filename + ".log"
+            print(filename)
+#             import pdb; pdb.set_trace()
+            log_filename = output_folder + "train_logs/" + str(filename) + ".log"
             self.model_name = output_folder + "models/" + filename
             self.output_name = output_folder + "debug_outputs/" + filename
 
